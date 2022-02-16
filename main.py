@@ -1,7 +1,8 @@
 from typing import Optional
 
+from forest import Forest
 from tree import Node
-
+from tree import InnerNode
 
 class Code:
     """
@@ -32,5 +33,21 @@ class Code:
 
         All the auxiliary classes for building the tree are provided (see tree.py) and should not be modified.
     """
+    
     def create_code(self, text: str) -> Optional[Node]:
-        raise NotImplementedError
+        if not text:
+            return None
+        
+        text = text.lower()
+        
+        trees = Forest(text)
+        
+        while not trees.is_singe_tree():
+            min_frequency_tree_1 = trees.pop_min_frequency_tree()
+            min_frequency_tree_2 = trees.pop_min_frequency_tree()
+        
+            new_tree = InnerNode(min_frequency_tree_1, min_frequency_tree_2)
+            
+            trees.append(new_tree)
+        
+        return trees.pop_min_frequency_tree()
