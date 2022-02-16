@@ -47,7 +47,7 @@ class SampleTests(unittest.TestCase):
         
     def test_special_empty_string(self):
         result = self.code.create_code("")
-        self.assertEqual(result, None) # alternatively exception could be expected
+        self.assertEqual(result, None)
         
     def test_deep_tree(self):
         result = self.code.create_code("abbccccddddd")
